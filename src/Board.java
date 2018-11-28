@@ -7,20 +7,20 @@ import java.awt.event.KeyListener;
 
 public class Board extends JComponent implements KeyListener {
   
-  Tile[][] tileSet = new Tile[10][10];
-  F16 myPlane = new F16(0, 0);
-  Plane enemyPlane = new F16(9, 9);
-  int tileSize = 72;
-  boolean player1Round = true;
+  private Tile[][] tileSet = new Tile[10][10];
+  private F16 myPlane = new F16(0, 0);
+  private Plane enemyPlane = new F16(9, 9);
+  private int tileSize = 72;
+  private boolean player1Round = true;
   
-  public Board() {
+  Board() {
     // set the size of your draw board
     setPreferredSize(new Dimension(720, 720));
     //Moveset.filler();
     setVisible(true);
   }
   
-  public void initialize(Graphics g) {
+  private void initialize(Graphics g) {
     setTiles(g);
     setPlanes(g);
     myPlane.moveset.moveList.add(0x28);
@@ -35,7 +35,7 @@ public class Board extends JComponent implements KeyListener {
     
   }
   
-  public void setTiles(Graphics g) {
+  private void setTiles(Graphics g) {
     for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 10; j++) {
         PositionedImage image = new PositionedImage("img/Tile.png", i * tileSize, j * tileSize);
@@ -74,7 +74,7 @@ public class Board extends JComponent implements KeyListener {
   
   }
   
-  public static boolean notOutOfBounds(int whereToMoveX, int whereToMoveY) {
+  static boolean notOutOfBounds(int whereToMoveX, int whereToMoveY) {
     return (whereToMoveX >= 0 && whereToMoveY >= 0 && whereToMoveX <= 9 && whereToMoveY <= 9);
   }
   

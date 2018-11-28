@@ -11,11 +11,11 @@ public abstract class Plane extends GameObject {
     super(positionX, positionY, image);
   }
   
-  public Plane(int positionX, int positionY) {
+  Plane(int positionX, int positionY) {
     super(positionX, positionY);
   }
   
-  public boolean move(KeyEvent e) {
+  boolean move(KeyEvent e) {
     if (moveset.moveList.contains(e.getKeyCode())) {
       if (e.getKeyCode() == (moveset.moveList.get(0)) && (Board.notOutOfBounds(positionX, positionY + 1))) {
         positionY += 1;
