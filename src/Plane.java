@@ -34,9 +34,9 @@ public abstract class Plane extends GameObject {
         return true;
       }
     }
-    move(e);
     return false;
   }
 }
+
 
 

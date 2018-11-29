@@ -81,11 +81,13 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void keyPressed(KeyEvent e) {
     if (player1Round) {
-      myPlane.move(e);
-      player1Round = false;
+      if (myPlane.move(e)) {
+        player1Round = false;
+      }
     } else {
-      enemyPlane.move(e);
-      player1Round = true;
+      if (enemyPlane.move(e)) {
+        player1Round = true;
+      }
     }
   }
   
