@@ -8,14 +8,14 @@ import java.awt.event.KeyListener;
 public class Board extends JComponent implements KeyListener {
   
   private Tile[][] tileSet = new Tile[10][10];
-  private F16 myPlane = new F16(0, 0);
-  private Plane enemyPlane = new F16(9, 9);
-  private int tileSize = 72;
+  private Ally myPlane = new Ally(0, 0);
+  private Plane enemyPlane = new Enemy(9, 9);
+  private int tileSize = 50;
   private boolean player1Round = true;
   
   Board() {
     // set the size of your draw board
-    setPreferredSize(new Dimension(720, 720));
+    setPreferredSize(new Dimension(500, 720));
     //Moveset.filler();
     setVisible(true);
   }
@@ -23,16 +23,6 @@ public class Board extends JComponent implements KeyListener {
   private void initialize(Graphics g) {
     setTiles(g);
     setPlanes(g);
-    myPlane.moveset.moveList.add(0x28);
-    myPlane.moveset.moveList.add(0x26);
-    myPlane.moveset.moveList.add(0x25);
-    myPlane.moveset.moveList.add(0x27);
-    
-    enemyPlane.moveset.moveList.add(0x53);
-    enemyPlane.moveset.moveList.add(0x57);
-    enemyPlane.moveset.moveList.add(0x41);
-    enemyPlane.moveset.moveList.add(0x44);
-    
   }
   
   private void setTiles(Graphics g) {
@@ -50,6 +40,9 @@ public class Board extends JComponent implements KeyListener {
     myPlaneImage.draw(g);
     PositionedImage enemyPlaneImage = new PositionedImage(enemyPlane.image, enemyPlane.positionX * tileSize, enemyPlane.positionY * tileSize);
     enemyPlaneImage.draw(g);
+    g.drawString(String.valueOf(myPlane.hp), 0, 520);
+    g.drawString(String.valueOf(enemyPlane.hp), 0, 540);
+    
   }
   
   @Override
@@ -59,8 +52,12 @@ public class Board extends JComponent implements KeyListener {
   }
   
   public static void main(String[] args) {
+    JPanel panel = new JPanel();
+    panel.setLayout(new BorderLayout());
     JFrame frame = new JFrame("?");
     Board board = new Board();
+    //hud.setPreferredSize(new Dimension(200,220));
+    //hud.setAlignmentY(500);
     frame.add(board);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);

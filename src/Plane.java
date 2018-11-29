@@ -6,6 +6,7 @@ public abstract class Plane extends GameObject {
   int dmg;
   int armor;
   Moveset moveset = new Moveset();
+  String direction;
   
   public Plane(int positionX, int positionY, String image) {
     super(positionX, positionY, image);
@@ -16,6 +17,7 @@ public abstract class Plane extends GameObject {
   }
   
   boolean move(KeyEvent e) {
+    
     if (moveset.moveList.contains(e.getKeyCode())) {
       if (e.getKeyCode() == (moveset.moveList.get(0)) && (Board.notOutOfBounds(positionX, positionY + 1))) {
         positionY += 1;
@@ -36,7 +38,12 @@ public abstract class Plane extends GameObject {
     }
     return false;
   }
-}
-
-
-
+  
+ /* void shoot() {
+    if (direction.equals("left")) {
+      for (int i = positionX ; i >= 0; i--) {
+        if()
+      }
+      }
+    }*/
+  }
